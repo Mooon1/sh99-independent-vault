@@ -1,17 +1,29 @@
 package de.sh99.vault;
 
+import de.sh99.vault.env.Chat;
+import de.sh99.vault.env.Economy;
+import de.sh99.vault.env.Permission;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.HashMap;
 
-public class IndependentVaultPlugin extends JavaPlugin implements VaultPlugin
+public class IndependentVaultPlugin extends JavaPlugin implements IndependentVault
 {
     private HashMap<Class<? extends Environment>, Environment> environments;
+
+    public IndependentVaultPlugin()
+    {
+        this.environments = new HashMap<>();
+    }
 
     @Override
     public void onEnable()
     {
-        this.environments = new HashMap<>();
+        this.saveConfig();
+        FileConfiguration config = this.getConfig();
+        if(!config.contains("vaultx.security.firewall.enabled")){ config.set("vaultx.security.firewall.enabled", true); }
+        if(!config.contains("vaultx.compatiblity.vault.enabled")){ config.set("vaultx.compatiblity.vault.enabled", false); }
+        this.saveConfig();
     }
 
     @Override
@@ -20,11 +32,25 @@ public class IndependentVaultPlugin extends JavaPlugin implements VaultPlugin
             return null;
         }
 
+        FileConfiguration config = this.getConfig();
+
+        if(null == config.get("vaultx.firewall.providers." + envClass.getName())){
+            return null;
+        }
+
+        if(!config.getBoolean("vaultx.firewall.providers." + envClass.getName()+".use")){
+            return null;
+        }
+
         return this.environments.get(envClass);
     }
 
     @Override
     public void registerEnvironment(Environment env) {
+        if(!this.getClass().equals(IndependentVaultPlugin.class)){
+            return;
+        }
+
         if(this.hasEnvironment(env.getClass())){
             return;
         }
@@ -34,6 +60,16 @@ public class IndependentVaultPlugin extends JavaPlugin implements VaultPlugin
         }
 
         this.environments.put(env.getClass(), env);
+
+        FileConfiguration config = this.getConfig();
+
+        if(config.contains("vaultx.firewall.providers." + env.getClass().getName())){
+            return;
+        }
+
+        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".use", false);
+        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".class", env.getClass().toString());
+        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
     }
 
     @Override
