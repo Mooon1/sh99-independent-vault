@@ -1,31 +1,32 @@
 package de.sh99.vaultx.economy;
 
+import com.sun.istack.internal.NotNull;
 import org.bukkit.World;
 
 import java.util.UUID;
 
 public interface BankManager
 {
-    public void withdraw(UUID playerId, double amount);
+    public void withdraw(@NotNull UUID playerId, @NotNull double amount);
 
-    public void deposit(UUID playerId, double amount);
+    public void deposit(@NotNull UUID playerId, @NotNull double amount);
 
-    public double getMoney(UUID playerId);
+    public double getMoney(@NotNull UUID playerId);
 
-    public double hasMoney(UUID playerId, double amount);
+    public double hasMoney(@NotNull UUID playerId, @NotNull double amount);
 
-    public void createAccount(UUID playerId, double amount);
+    public void createAccount(@NotNull UUID playerId, @NotNull double amount);
 
-    public void createAccount(UUID playerId, double amount, World world);
+    public void createAccount(@NotNull UUID playerId, @NotNull double amount, @NotNull World world);
 
-    public void closeAccount(UUID playerId);
+    public void closeAccount(@NotNull UUID playerId);
 
-    public boolean hasAccount(UUID playerId);
+    public boolean hasAccount(@NotNull UUID playerId);
 
-    public boolean isMember(UUID playerId);
+    public boolean isMember(@NotNull UUID playerId);
 
-    public void addMember(UUID ownerId, UUID memberId);
+    public void addMember(@NotNull UUID ownerId, UUID memberId);
 
-    public void removeMember(UUID playerId);
+    public void removeMember(@NotNull UUID playerId);
 
 }

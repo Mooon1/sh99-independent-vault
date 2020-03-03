@@ -1,14 +1,16 @@
 package de.sh99.vaultx.economy;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.UUID;
 
 public interface BalanceManager
 {
-    public void add(UUID playerId, double amount);
+    public void add(@NotNull UUID playerId, @NotNull double amount);
 
-    public void remove(UUID playerId, double amount);
+    public void remove(@NotNull UUID playerId, @NotNull double amount);
 
-    public double getMoney(UUID playerId);
+    public double getMoney(@NotNull UUID playerId);
 
-    public double hasMoney(UUID playerId, double amount);
+    public double hasMoney(@NotNull UUID playerId, @NotNull double amount);
 }
