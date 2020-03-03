@@ -1,4 +1,4 @@
-package de.sh99.vaultx.permission;
+package de.sh99.vaultx.manager;
 
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
@@ -14,6 +14,8 @@ public interface PermissionManager
     public String getName();
 
     public boolean isEnabled();
+
+    public boolean setEnabled();
 
     public boolean isSuperPermsCompatible();
 
