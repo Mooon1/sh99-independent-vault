@@ -8,9 +8,5 @@ public interface EconomyProvider extends EnvironmentProvider
 {
     public Balance getBalance();
 
-    public void setBalance(Balance balance);
-
     public Bank getBank();
-
-    public void setBank(Bank bank);
 }
