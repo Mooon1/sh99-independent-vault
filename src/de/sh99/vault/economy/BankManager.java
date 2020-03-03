@@ -4,7 +4,7 @@ import org.bukkit.World;
 
 import java.util.UUID;
 
-public interface Bank
+public interface BankManager
 {
     public void withdraw(UUID playerId, double amount);
 

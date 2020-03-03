@@ -2,7 +2,7 @@ package de.sh99.vault.economy;
 
 import java.util.UUID;
 
-public interface Balance
+public interface BalanceManager
 {
     public void add(UUID playerId, double amount);
 
