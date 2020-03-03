@@ -25,8 +25,6 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     public void onEnable()
     {
         this.saveConfig();
-        FileConfiguration config = this.getConfig();
-        this.saveConfig();
     }
 
     @Override
