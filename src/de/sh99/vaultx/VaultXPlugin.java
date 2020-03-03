@@ -48,11 +48,11 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
         FileConfiguration config = this.getConfig();
 
-        if(null == config.get(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + envClass.getName())){
+        if(null == config.get(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + convertSnakecaseToUndescore(envClass.getName()))){
             return null;
         }
 
-        if(!config.getBoolean(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + envClass.getName() + ".use")){
+        if(!config.getBoolean(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + convertSnakecaseToUndescore(envClass.getName()) + ".use")){
             return null;
         }
 
@@ -61,10 +61,6 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     @Override
     public void registerEnvironment(Environment env) {
-        if(!this.getClass().equals(VaultXPlugin.class)){
-            return;
-        }
-
         if(this.hasEnvironment(env.getClass())){
             return;
         }
@@ -77,14 +73,21 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
         FileConfiguration config = this.getConfig();
 
-        if(config.contains(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName())){
+        String clazz = convertSnakecaseToUndescore(env.getClass().getName());
+
+        if(config.contains(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz)){
             return;
         }
 
-        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".use", false);
-        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".class", env.getClass().toString());
-        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".use", false);
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".class", env.getClass().toString());
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
         this.saveConfig();
+    }
+
+    public static String convertSnakecaseToUndescore(String str)
+    {
+        return str.replace(".", "_");
     }
 
     @Override
