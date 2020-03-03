@@ -13,7 +13,7 @@ public interface VaultX
 
     public static VaultX getRuntimeInstance()
     {
-        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("IndependentVault");
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("VaultX");
 
         if (null == plugin) {
             return null;

@@ -4,4 +4,4 @@ authors:
 version: "1.0.0"
 load: STARTUP
 api-version: "1.13"
-main: de.sh99.vault.VaultX
+main: de.sh99.vaultx.VaultXPlugin
