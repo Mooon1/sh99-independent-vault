@@ -2,7 +2,6 @@ package de.sh99.vaultx.manager;
 
 import com.sun.istack.internal.NotNull;
 import com.sun.istack.internal.Nullable;
-import de.sh99.vaultx.env.Permission;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
