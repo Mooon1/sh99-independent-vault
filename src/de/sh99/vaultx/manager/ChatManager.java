@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 
 public interface ChatManager
 {
-    public void setPermission(Permission permission);
+    public void setPermissionManager(PermissionManager permission);
 
-    public Permission getPermission();
+    public PermissionManager getPermissionManager();
 
     public String getName();
 
