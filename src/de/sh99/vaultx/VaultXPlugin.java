@@ -3,16 +3,15 @@ package de.sh99.vaultx;
 import de.sh99.vaultx.env.Chat;
 import de.sh99.vaultx.env.Economy;
 import de.sh99.vaultx.env.Permission;
-import org.bukkit.Bukkit;
+import net.milkbowl.vault.Vault;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 import java.util.HashMap;
 
 public class VaultXPlugin extends JavaPlugin implements VaultX
 {
-    private static final String CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED = "vaultx.compatibility.vault.enabled";
     private static final String CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ = "vaultx.security.firewall.provider.";
 
     private HashMap<Class<? extends Environment>, Environment> environments;
@@ -27,17 +26,7 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     {
         this.saveConfig();
         FileConfiguration config = this.getConfig();
-        if(!config.contains(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED)){ config.set(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED, false); }
         this.saveConfig();
-
-
-        if(!config.getBoolean(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED)){
-            Plugin vaultPlugin = Bukkit.getPluginManager().getPlugin("Vault");
-            if(null == vaultPlugin){
-                return;
-            }
-            Bukkit.getPluginManager().disablePlugin(vaultPlugin);
-        }
     }
 
     @Override
@@ -84,6 +73,10 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     public static String convertSnakecaseToUndescore(String str)
     {
+        if(str.contains(" ")){
+            str = str.split(" ")[1];
+        }
+
         return str.replace(".", "_");
     }
 
