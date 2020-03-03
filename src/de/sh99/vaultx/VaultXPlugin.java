@@ -3,12 +3,17 @@ package de.sh99.vaultx;
 import de.sh99.vaultx.env.Chat;
 import de.sh99.vaultx.env.Economy;
 import de.sh99.vaultx.env.Permission;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 
 public class VaultXPlugin extends JavaPlugin implements VaultX
 {
+    private static final String CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED = "vaultx.compatibility.vault.enabled";
+    private static final String CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ = "vaultx.security.firewall.provider.";
+
     private HashMap<Class<? extends Environment>, Environment> environments;
 
     public VaultXPlugin()
@@ -21,9 +26,17 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     {
         this.saveConfig();
         FileConfiguration config = this.getConfig();
-        if(!config.contains("vaultx.security.firewall.enabled")){ config.set("vaultx.security.firewall.enabled", true); }
-        if(!config.contains("vaultx.compatiblity.vault.enabled")){ config.set("vaultx.compatiblity.vault.enabled", false); }
+        if(!config.contains(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED)){ config.set(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED, false); }
         this.saveConfig();
+
+
+        if(!config.getBoolean(CFG_VAULTX_COMPATIBILITY_VAULT_ENABLED)){
+            Plugin vaultPlugin = Bukkit.getPluginManager().getPlugin("Vault");
+            if(null == vaultPlugin){
+                return;
+            }
+            Bukkit.getPluginManager().disablePlugin(vaultPlugin);
+        }
     }
 
     @Override
@@ -34,11 +47,11 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
         FileConfiguration config = this.getConfig();
 
-        if(null == config.get("vaultx.firewall.providers." + envClass.getName())){
+        if(null == config.get(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + envClass.getName())){
             return null;
         }
 
-        if(!config.getBoolean("vaultx.firewall.providers." + envClass.getName()+".use")){
+        if(!config.getBoolean(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + envClass.getName() + ".use")){
             return null;
         }
 
@@ -63,13 +76,14 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
         FileConfiguration config = this.getConfig();
 
-        if(config.contains("vaultx.firewall.providers." + env.getClass().getName())){
+        if(config.contains(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName())){
             return;
         }
 
-        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".use", false);
-        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".class", env.getClass().toString());
-        config.set("vaultx.firewall.providers." + env.getClass().getName() + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".use", false);
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".class", env.getClass().toString());
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + env.getClass().getName() + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
+        this.saveConfig();
     }
 
     @Override
