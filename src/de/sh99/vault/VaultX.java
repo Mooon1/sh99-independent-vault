@@ -3,7 +3,7 @@ package de.sh99.vault;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
-public interface IndependentVault
+public interface VaultX
 {
     public Environment getEnvironmental(Class<? extends Environment> envClass);
 
@@ -11,7 +11,7 @@ public interface IndependentVault
 
     public boolean hasEnvironment(Class<? extends Environment> envClass);
 
-    public static IndependentVault getRuntimeInstance()
+    public static VaultX getRuntimeInstance()
     {
         Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("IndependentVault");
 
@@ -19,10 +19,10 @@ public interface IndependentVault
             return null;
         }
 
-        if(!(plugin instanceof IndependentVault)){
+        if(!(plugin instanceof VaultX)){
             return null;
         }
 
-        return (IndependentVault) plugin;
+        return (VaultX) plugin;
     }
 }

@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 
-public class VaultXPlugin extends JavaPlugin implements IndependentVault
+public class VaultXPlugin extends JavaPlugin implements VaultX
 {
     private HashMap<Class<? extends Environment>, Environment> environments;
 
