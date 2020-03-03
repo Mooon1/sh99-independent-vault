@@ -7,11 +7,11 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
 
-public class IndependentVaultPlugin extends JavaPlugin implements IndependentVault
+public class VaultXPlugin extends JavaPlugin implements IndependentVault
 {
     private HashMap<Class<? extends Environment>, Environment> environments;
 
-    public IndependentVaultPlugin()
+    public VaultXPlugin()
     {
         this.environments = new HashMap<>();
     }
@@ -47,7 +47,7 @@ public class IndependentVaultPlugin extends JavaPlugin implements IndependentVau
 
     @Override
     public void registerEnvironment(Environment env) {
-        if(!this.getClass().equals(IndependentVaultPlugin.class)){
+        if(!this.getClass().equals(VaultXPlugin.class)){
             return;
         }
 
