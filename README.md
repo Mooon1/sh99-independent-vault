@@ -6,7 +6,7 @@ Example Implementation Project: [Click to open](https://github.com/Mooon1/sh99-e
 
 Just drop the VaultX.jar file into your plugins-directoy on your server and reload. Done.
 
-## What is Vault or VaultX?
+## What is Vault without X?
 
 Vault is an abstraction library for bukkit which provides some interfaces for 
 developers and plugins to unit the way of handling Chat, Permission and Economy. 
@@ -14,14 +14,10 @@ The original developer of [Vault](https://github.com/MilkBowl/Vault) and [VaultA
 set a significant milestone in bukkit development history so without his basic idea of this abstraction
 this repository would not exist.
 
-Also we want explicity explain that we do not look at the code of the original plugins while developing on this. 
-It is just our interpretation of how the Vault-Plugin idea should work and it makes it much easier for developer and server owners 
-to work with it.
+## What makes VaultX so special?
 
-## Why VaultX?
-
-So even you want to create a plugin based on vault its probably to register it to vault without send a message to the original author of it. 
-That means you build a class which implements an interface and store it directly in the plugin itself so the plugin grows for each new registered 
+So even you want to create a plugin based on vault its probably impossible to register it to vault without sending a message to the original author of it. 
+This means you build a class which implements an interface and store it directly in the plugin itself so the plugin grows for each new registered 
 vault-plugin on the market.
 
 So VaultX give you the ability to hook your plugin right into or get the expected service from it without knowing exacly which plugin you use. 
