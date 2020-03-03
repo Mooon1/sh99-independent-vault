@@ -6,7 +6,7 @@ import de.sh99.vault.economy.Bank;
 
 public interface EconomyProvider extends EnvironmentProvider
 {
-    public Balance getBalance();
+    public Balance getBalanceManager();
 
-    public Bank getBank();
+    public Bank getBankManager();
 }
