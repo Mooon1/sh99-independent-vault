@@ -42,30 +42,27 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     @Override
     public Environment getEnvironmental(Class<? extends Environment> envClass) {
-        if(!this.hasEnvironment(envClass)){
-            return null;
-        }
-
         FileConfiguration config = this.getConfig();
 
-        if(null == config.get(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + convertSnakecaseToUndescore(envClass.getName()))){
-            return null;
+        for (Environment env:this.environments.values()){
+            for (Class<?> envInterface:env.getClass().getInterfaces()){
+                if(!envClass.equals(envInterface)){
+                    continue;
+                }
+
+                if(!config.getBoolean(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + convertSnakecaseToUndescore(env.getClass().getName()) + ".use", false)){
+                    return null;
+                }
+                return env;
+            }
         }
 
-        if(!config.getBoolean(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + convertSnakecaseToUndescore(envClass.getName()) + ".use")){
-            return null;
-        }
-
-        return this.environments.get(envClass);
+        return null;
     }
 
     @Override
     public void registerEnvironment(Environment env) {
         if(this.hasEnvironment(env.getClass())){
-            return;
-        }
-
-        if(!Environment.isValid(env.getClass())){
             return;
         }
 
@@ -81,7 +78,7 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
         config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".use", false);
         config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".class", env.getClass().toString());
-        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".type", (env instanceof Economy) ? "Economy" : (env instanceof Chat ? "Chat" : (env instanceof Permission) ? "Permission" : "Unknown Provider"));
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".type", (env instanceof Economy) ? convertSnakecaseToUndescore(Economy.class.getName()) : (env instanceof Chat ? convertSnakecaseToUndescore(Chat.class.getName()) : (env instanceof Permission) ? convertSnakecaseToUndescore(Permission.class.getName()) : null));
         this.saveConfig();
     }
 
