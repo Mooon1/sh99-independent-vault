@@ -1,4 +1,4 @@
-package de.sh99.vault;
+package de.sh99.vaultx;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

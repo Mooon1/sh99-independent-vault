@@ -1,4 +1,4 @@
-package de.sh99.vault.economy;
+package de.sh99.vaultx.economy;
 
 import org.bukkit.World;
 

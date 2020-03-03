@@ -1,4 +1,4 @@
-package de.sh99.vault;
+package de.sh99.vaultx;
 
 public interface Environment
 {

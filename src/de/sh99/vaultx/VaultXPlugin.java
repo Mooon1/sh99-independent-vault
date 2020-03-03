@@ -1,8 +1,8 @@
-package de.sh99.vault;
+package de.sh99.vaultx;
 
-import de.sh99.vault.env.Chat;
-import de.sh99.vault.env.Economy;
-import de.sh99.vault.env.Permission;
+import de.sh99.vaultx.env.Chat;
+import de.sh99.vaultx.env.Economy;
+import de.sh99.vaultx.env.Permission;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashMap;
