@@ -4,7 +4,9 @@ public enum Reason
 {
     NO_ACCOUNT("no-account"),
     NOT_ENOUGHT_MONEY("not-enought-money"),
-    NO_ACCESS("no-access");
+    NO_ACCESS("no-access"),
+    PERSISTENCE_FAILURE("persistence-failure"),
+    UNDEFINED("undefined");
 
     private final String identifier;
 
