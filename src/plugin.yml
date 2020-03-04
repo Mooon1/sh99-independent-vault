@@ -1,7 +1,7 @@
 name: "VaultX"
 authors:
   - "Sh99"
-version: "1.0.3"
+version: "1.0.4"
 load: STARTUP
 api-version: "1.13"
 main: de.sh99.vaultx.VaultXPlugin
