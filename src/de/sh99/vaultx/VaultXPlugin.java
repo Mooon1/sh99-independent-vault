@@ -1,9 +1,9 @@
 package de.sh99.vaultx;
 
+import de.sh99.vaultx.command.VaultXCommand;
 import de.sh99.vaultx.env.Chat;
 import de.sh99.vaultx.env.Economy;
 import de.sh99.vaultx.env.Permission;
-import net.milkbowl.vault.Vault;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -25,6 +25,9 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     public void onEnable()
     {
         this.saveConfig();
+
+        this.getCommand("vaultx").setExecutor(new VaultXCommand(this));
+        this.getCommand("vaultx").setTabCompleter(new VaultXCommand(this));
     }
 
     @Override
@@ -64,9 +67,14 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
         }
 
         config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".use", false);
-        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".class", env.getClass().toString());
+        config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".class", env.getClass().toString().replace("class ", ""));
         config.set(CFG_VAULTX_SECURITY_FIREWALL_PROVIDER_ + clazz + ".type", (env instanceof Economy) ? convertSnakecaseToUndescore(Economy.class.getName()) : (env instanceof Chat ? convertSnakecaseToUndescore(Chat.class.getName()) : (env instanceof Permission) ? convertSnakecaseToUndescore(Permission.class.getName()) : null));
         this.saveConfig();
+    }
+
+    @Override
+    public HashMap<Class<? extends Environment>, Environment> registeredEnvironments() {
+        return this.environments;
     }
 
     public static String convertSnakecaseToUndescore(String str)

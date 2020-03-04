@@ -8,7 +8,7 @@ public interface BalanceManager
 {
     public boolean isEnabled();
 
-    public boolean setEnabled();
+    public void setEnabled();
 
     public void add(@NotNull UUID playerId, @NotNull double amount);
 
