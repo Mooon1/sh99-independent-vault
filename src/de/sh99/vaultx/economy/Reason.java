@@ -6,6 +6,7 @@ public enum Reason
     NOT_ENOUGHT_MONEY("not-enought-money"),
     NO_ACCESS("no-access"),
     PERSISTENCE_FAILURE("persistence-failure"),
+    DISABLED("disabled"),
     UNDEFINED("undefined");
 
     private final String identifier;
