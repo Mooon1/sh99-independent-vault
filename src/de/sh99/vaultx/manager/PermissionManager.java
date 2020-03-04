@@ -15,7 +15,7 @@ public interface PermissionManager
 
     public boolean isEnabled();
 
-    public void setEnabled();
+    public void setEnabled(boolean enabled);
 
     public boolean isSuperPermsCompatible();
 

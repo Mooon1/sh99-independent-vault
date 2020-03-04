@@ -16,7 +16,7 @@ public interface ChatManager
 
     public boolean isEnabled();
 
-    public void setEnabled();
+    public void setEnabled(boolean enabled);
 
     public String getPrefix(@NotNull Player player, @Nullable World world);
 

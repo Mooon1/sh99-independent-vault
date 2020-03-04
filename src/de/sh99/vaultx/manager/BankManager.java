@@ -9,7 +9,7 @@ public interface BankManager
 {
     public boolean isEnabled();
 
-    public void setEnabled();
+    public void setEnabled(boolean enabled);
 
     public void withdraw(@NotNull UUID playerId, @NotNull double amount);
 
