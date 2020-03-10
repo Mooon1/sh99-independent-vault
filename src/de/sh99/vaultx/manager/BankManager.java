@@ -18,7 +18,7 @@ public interface BankManager
 
     public double getMoney(@NotNull UUID playerId);
 
-    public double hasMoney(@NotNull UUID playerId, @NotNull double amount);
+    public boolean hasMoney(@NotNull UUID playerId, @NotNull double amount);
 
     public Transaction createAccount(@NotNull UUID playerId, @NotNull double amount);
 
