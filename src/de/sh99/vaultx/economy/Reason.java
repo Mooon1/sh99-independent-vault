@@ -7,6 +7,7 @@ public enum Reason
     NO_ACCESS("no-access"),
     PERSISTENCE_FAILURE("persistence-failure"),
     DISABLED("disabled"),
+    NEGATIVE_VALUE("negative-value"),
     UNDEFINED("undefined");
 
     private final String identifier;
