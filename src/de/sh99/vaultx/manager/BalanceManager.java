@@ -17,5 +17,5 @@ public interface BalanceManager
 
     public double getMoney(@NotNull UUID playerId);
 
-    public double hasMoney(@NotNull UUID playerId, @NotNull double amount);
+    public boolean hasMoney(@NotNull UUID playerId, @NotNull double amount);
 }
