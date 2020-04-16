@@ -4,9 +4,10 @@ import de.sh99.vaultx.command.VaultXCommand;
 import de.sh99.vaultx.env.Chat;
 import de.sh99.vaultx.env.Economy;
 import de.sh99.vaultx.env.Permission;
+import de.sh99.vaultx.vault.VaultFixer;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
@@ -16,6 +17,8 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     private HashMap<Class<? extends Environment>, Environment> environments;
 
+    private VaultFixer vaultFixer;
+
     public VaultXPlugin()
     {
         this.environments = new HashMap<>();
@@ -24,10 +27,14 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     @Override
     public void onEnable()
     {
+        //this.vaultFixer = new VaultFixer(this);
+        //this.vaultFixer.fix();
+
         this.saveConfig();
 
         this.getCommand("vaultx").setExecutor(new VaultXCommand(this));
         this.getCommand("vaultx").setTabCompleter(new VaultXCommand(this));
+
     }
 
     @Override
