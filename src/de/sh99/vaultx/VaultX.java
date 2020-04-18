@@ -1,5 +1,6 @@
 package de.sh99.vaultx;
 
+import de.sh99.vaultx.environment.VaultXEnvironment;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -9,13 +10,13 @@ public interface VaultX
 {
     public static final String PLUGIN_NAME = "VaultX";
 
-    public Environment getEnvironmental(Class<? extends Environment> envClass);
+    public VaultXEnvironment getEnvironmental(Class<? extends VaultXEnvironment> envClass);
 
-    public void registerEnvironment(Environment env);
+    public void registerEnvironment(VaultXEnvironment environment);
 
-    public HashMap<Class<? extends Environment>, Environment> registeredEnvironments();
+    public HashMap<Class<? extends VaultXEnvironment>, VaultXEnvironment> registeredEnvironments();
 
-    public boolean hasEnvironment(Class<? extends Environment> envClass);
+    public boolean hasEnvironment(Class<? extends VaultXEnvironment> envClass);
 
     public static VaultX getRuntimeInstance()
     {

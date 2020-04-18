@@ -1,11 +1,11 @@
 package de.sh99.vaultx.command;
 
 import com.sun.istack.internal.NotNull;
-import de.sh99.vaultx.Environment;
+import de.sh99.vaultx.environment.VaultXEnvironment;
 import de.sh99.vaultx.VaultX;
-import de.sh99.vaultx.env.Chat;
-import de.sh99.vaultx.env.Economy;
-import de.sh99.vaultx.env.Permission;
+import de.sh99.vaultx.environment.ChatEnvironment;
+import de.sh99.vaultx.environment.EconomyEnvironment;
+import de.sh99.vaultx.environment.PermissionEnvironment;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -40,21 +40,21 @@ public class VaultXCommand implements CommandExecutor, TabCompleter
                 case "firewall":
                     switch(args[1]){
                         case "list":
-                            for (Environment env:this.vaultX.registeredEnvironments().values()){
+                            for (VaultXEnvironment environment :this.vaultX.registeredEnvironments().values()){
 
-                                String[] envParts = env.getClass().getName().split("\\.");
+                                String[] envParts = environment.getClass().getName().split("\\.");
                                 //TODO: could probably get the string/name of environment automatically by using reflection and checking each interface against Environment interface and than extract the name from the interface on the same way did on class
-                                if(env instanceof Economy){
+                                if(environment instanceof EconomyEnvironment){
                                     sender.sendMessage("§7Economy: §6§l" + envParts[envParts.length-1]);
                                     continue;
                                 }
 
-                                if(env instanceof Permission){
+                                if(environment instanceof PermissionEnvironment){
                                     sender.sendMessage("§Permission: §6§l" + envParts[envParts.length-1]);
                                     continue;
                                 }
 
-                                if(env instanceof Chat){
+                                if(environment instanceof ChatEnvironment){
                                     sender.sendMessage("§Chat: §6§l" + envParts[envParts.length-1]);
                                 }
                             }
