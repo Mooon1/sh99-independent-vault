@@ -1,7 +1,7 @@
 package de.sh99.vaultx.env;
 
 import de.sh99.vaultx.Environment;
-import de.sh99.vaultx.provider.ChatProvider;
+import de.sh99.vaultx.env.provider.ChatProvider;
 
 public interface Chat extends Environment
 {

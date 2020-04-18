@@ -1,7 +1,7 @@
 package de.sh99.vaultx.env;
 
 import de.sh99.vaultx.Environment;
-import de.sh99.vaultx.provider.PermissionProvider;
+import de.sh99.vaultx.env.provider.PermissionProvider;
 
 public interface Permission extends Environment
 {

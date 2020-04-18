@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 public interface VaultX
 {
+    public static final String PLUGIN_NAME = "VaultX";
+
     public Environment getEnvironmental(Class<? extends Environment> envClass);
 
     public void registerEnvironment(Environment env);
@@ -17,7 +19,7 @@ public interface VaultX
 
     public static VaultX getRuntimeInstance()
     {
-        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("VaultX");
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin(PLUGIN_NAME);
 
         if (null == plugin) {
             return null;
