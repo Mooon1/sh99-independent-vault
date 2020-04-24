@@ -1,5 +1,7 @@
 package de.sh99.vaultx.vault;
 
+import net.milkbowl.vault.Vault;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.Plugin;
 
 public class VaultFixer
@@ -13,9 +15,15 @@ public class VaultFixer
 
     public void fix()
     {
-        if(null == this.plugin.getServer().getPluginManager().getPlugin("Vault")){
+        //disable vault
+
+        Plugin vault = this.plugin.getServer().getPluginManager().getPlugin("Vault");
+
+        if(null == vault){
             return;
         }
+
+        this.plugin.getServer().getPluginManager().disablePlugin(vault);
 
         for (Plugin plugin:this.plugin.getServer().getPluginManager().getPlugins()) {
             for (Class<?> i:plugin.getClass().getInterfaces()){
@@ -25,6 +33,7 @@ public class VaultFixer
 
                 switch (i.toString()){
                     case "net.milkbowl.vault.economy.Economy":
+                        Economy vaultEco = (Economy) plugin;
                         continue;
                     case "net.milkbowl.vault.chat.Chat":
                         continue;
