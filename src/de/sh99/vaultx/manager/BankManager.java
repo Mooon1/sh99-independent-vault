@@ -12,9 +12,9 @@ public interface BankManager
 
     public void setEnabled(boolean enabled);
 
-    public Transaction withdraw(@NotNull UUID playerId, @NotNull double amount);
+    public Transaction withdraw(@NotNull UUID playerId, @NotNull double amount, @NotNull boolean useOwnAccount);
 
-    public Transaction deposit(@NotNull UUID playerId, @NotNull double amount);
+    public Transaction deposit(@NotNull UUID playerId, @NotNull double amount, @NotNull boolean useOwnAccount);
 
     public double getMoney(@NotNull UUID playerId);
 
