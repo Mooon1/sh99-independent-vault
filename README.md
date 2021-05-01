@@ -25,8 +25,7 @@ It just will give you an instance and the VaultX interface so you can simply wor
 
 ## Does VaultX care about compatibility to Vault as old plugins do not use VaultX?
 
-Sure. VaultX provides some functionalities to detect in example if your economy plugin which you installed on your server (ie: Essentials, iConomy, etc) 
-is based on Vault or VaultX. Even it depends on Vault, VaultX recognize it and change it call on Vault itself to manage the economy so VaultX only provide it.
+Currently it is not supported and not compatible any way. When you want to increase your flexibility by adding plugins for Economy, Chat or Permission you should use VaultX.
 
 ## Create your own Economy, Chat or Permission Plugin? [Click to open](https://github.com/Mooon1/sh99-example-vaultx/tree/master/CUSTOM_ECONOMY/src/de/sh99/custom_economy)
 

@@ -5,7 +5,6 @@ import de.sh99.vaultx.environment.ChatEnvironment;
 import de.sh99.vaultx.environment.EconomyEnvironment;
 import de.sh99.vaultx.environment.VaultXEnvironment;
 import de.sh99.vaultx.environment.PermissionEnvironment;
-import de.sh99.vaultx.vault.VaultFixer;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,8 +17,6 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     private HashMap<Class<? extends VaultXEnvironment>, VaultXEnvironment> environments;
 
-    private VaultFixer vaultFixer;
-
     public VaultXPlugin()
     {
         this.environments = new HashMap<>();
@@ -28,9 +25,6 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
     @Override
     public void onEnable()
     {
-        //this.vaultFixer = new VaultFixer(this);
-        //this.vaultFixer.fix();
-
         this.saveConfig();
 
         this.getCommand("vaultx").setExecutor(new VaultXCommand(this));
@@ -85,7 +79,7 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
         return this.environments;
     }
 
-    public static String convertSnakecaseToUndescore(String str)
+    private static String convertSnakecaseToUndescore(String str)
     {
         if(str.contains(" ")){
             str = str.split(" ")[1];
@@ -96,10 +90,6 @@ public class VaultXPlugin extends JavaPlugin implements VaultX
 
     @Override
     public boolean hasEnvironment(Class<? extends VaultXEnvironment> envClass) {
-        if(!this.environments.containsKey(envClass)){
-            return false;
-        }
-
-        return true;
+        return this.environments.containsKey(envClass);
     }
 }
