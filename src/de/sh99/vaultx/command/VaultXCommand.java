@@ -1,6 +1,5 @@
 package de.sh99.vaultx.command;
 
-import com.sun.istack.internal.NotNull;
 import de.sh99.vaultx.environment.VaultXEnvironment;
 import de.sh99.vaultx.VaultX;
 import de.sh99.vaultx.environment.ChatEnvironment;
@@ -18,7 +17,7 @@ public class VaultXCommand implements CommandExecutor, TabCompleter
 {
     private VaultX vaultX;
 
-    public VaultXCommand(@NotNull VaultX vaultX)
+    public VaultXCommand(VaultX vaultX)
     {
         this.vaultX = vaultX;
     }

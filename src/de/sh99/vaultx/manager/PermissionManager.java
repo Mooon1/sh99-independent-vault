@@ -1,7 +1,5 @@
 package de.sh99.vaultx.manager;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -19,47 +17,47 @@ public interface PermissionManager
 
     public boolean isSuperPermsCompatible();
 
-    public boolean has(@NotNull CommandSender sender, @NotNull String permission);
+    public boolean has(CommandSender sender, String permission);
 
-    public boolean add(@NotNull OfflinePlayer offlinePlayer, @NotNull String permission, @Nullable World world);
+    public boolean add(OfflinePlayer offlinePlayer, String permission, World world);
 
-    public boolean add(@NotNull Player player, @NotNull String permission, @Nullable World world);
+    public boolean add(Player player, String permission, World world);
 
-    public boolean remove(@NotNull OfflinePlayer offlinePlayer, @NotNull String permission, @Nullable World world);
+    public boolean remove(OfflinePlayer offlinePlayer, String permission, World world);
 
-    public boolean remove(@NotNull Player player, @NotNull String permission, @NotNull World world);
+    public boolean remove(Player player, String permission, World world);
 
-    public boolean addTransient(@NotNull Player player, @NotNull String permission, @Nullable World world);
+    public boolean addTransient(Player player, String permission, World world);
 
-    public boolean addTransient(@NotNull OfflinePlayer offlinePlayer, @NotNull String permission, @Nullable World world);
+    public boolean addTransient(OfflinePlayer offlinePlayer, String permission, World world);
 
-    public boolean removeTransient(@NotNull Player player, @NotNull String permission, @Nullable World world);
+    public boolean removeTransient(Player player, String permission, World world);
 
-    public boolean removeTransient(@NotNull OfflinePlayer offlinePlayer, @NotNull String permission, @Nullable World world);
+    public boolean removeTransient(OfflinePlayer offlinePlayer, String permission, World world);
 
-    public boolean groupHas(@NotNull String group, @NotNull String permission, @Nullable World world);
+    public boolean groupHas(String group, String permission, World world);
 
-    public boolean groupRemove(@NotNull String group, @NotNull String permission, @Nullable World world);
+    public boolean groupRemove(String group, String permission, World world);
 
-    public boolean isMember(@NotNull String group, @NotNull Player player, @Nullable World world);
+    public boolean isMember(String group, Player player, World world);
 
-    public boolean isMember(@NotNull String group, @NotNull OfflinePlayer player, @Nullable World world);
+    public boolean isMember(String group, OfflinePlayer player, World world);
 
-    public boolean addMember(@NotNull String group, @NotNull Player player, @Nullable World world);
+    public boolean addMember(String group, Player player, World world);
 
-    public boolean addMember(@NotNull String group, @NotNull OfflinePlayer player, @Nullable World world);
+    public boolean addMember(String group, OfflinePlayer player, World world);
 
-    public boolean removeMember(@NotNull String group, @NotNull Player player, @Nullable World world);
+    public boolean removeMember(String group, Player player, World world);
 
-    public boolean removeMember(@NotNull String group, @NotNull OfflinePlayer player, @Nullable World world);
+    public boolean removeMember(String group, OfflinePlayer player, World world);
 
-    public List<String> getGroupsByPlayer(@NotNull Player player, @Nullable World world);
+    public List<String> getGroupsByPlayer(Player player, World world);
 
-    public List<String> getGroupsByPlayer(@NotNull OfflinePlayer offlinePlayer, @Nullable World world);
+    public List<String> getGroupsByPlayer(OfflinePlayer offlinePlayer, World world);
 
-    public String getPrimaryGroup(@NotNull Player player, @Nullable World world);
+    public String getPrimaryGroup(Player player, World world);
 
-    public String getPrimaryGroup(@NotNull OfflinePlayer offlinePlayer, @Nullable World world);
+    public String getPrimaryGroup(OfflinePlayer offlinePlayer, World world);
 
     public List<String> getGroups();
 

@@ -1,6 +1,5 @@
 package de.sh99.vaultx.manager;
 
-import com.sun.istack.internal.NotNull;
 import de.sh99.vaultx.economy.Transaction;
 import org.bukkit.World;
 
@@ -12,26 +11,26 @@ public interface BankManager
 
     public void setEnabled(boolean enabled);
 
-    public Transaction withdraw(@NotNull UUID playerId, @NotNull double amount, @NotNull boolean useOwnAccount);
+    public Transaction withdraw( UUID playerId,  double amount,  boolean useOwnAccount);
 
-    public Transaction deposit(@NotNull UUID playerId, @NotNull double amount, @NotNull boolean useOwnAccount);
+    public Transaction deposit( UUID playerId,  double amount,  boolean useOwnAccount);
 
-    public double getMoney(@NotNull UUID playerId);
+    public double getMoney( UUID playerId);
 
-    public boolean hasMoney(@NotNull UUID playerId, @NotNull double amount);
+    public boolean hasMoney( UUID playerId,  double amount);
 
-    public Transaction createAccount(@NotNull UUID playerId, @NotNull double amount);
+    public Transaction createAccount( UUID playerId,  double amount);
 
-    public Transaction createAccount(@NotNull UUID playerId, @NotNull double amount, @NotNull World world);
+    public Transaction createAccount( UUID playerId,  double amount,  World world);
 
-    public Transaction closeAccount(@NotNull UUID playerId);
+    public Transaction closeAccount( UUID playerId);
 
-    public boolean hasAccount(@NotNull UUID playerId);
+    public boolean hasAccount( UUID playerId);
 
-    public boolean isMember(@NotNull UUID playerId);
+    public boolean isMember( UUID playerId);
 
-    public Transaction addMember(@NotNull UUID ownerId, UUID memberId);
+    public Transaction addMember( UUID ownerId, UUID memberId);
 
-    public Transaction removeMember(@NotNull UUID playerId);
+    public Transaction removeMember( UUID playerId);
 
 }
